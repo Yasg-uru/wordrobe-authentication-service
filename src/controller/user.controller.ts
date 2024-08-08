@@ -84,5 +84,39 @@ class UserController {
       next(new Errorhandler(500, "Internal server Error"));
     }
   }
+  public static async verify(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { email, code } = req.body;
+      const user = await UserModel.findOne({ email });
+      if (!user) {
+        return next(new Errorhandler(404, "user not found"));
+      }
+      const isValidCode = user.verifycode === code;
+      const isNotCodeVerify = new Date(user.VerifyCodeExpiry) > new Date();
+      if (isNotCodeVerify && isValidCode) {
+        user.isVerified = true;
+        await user.save();
+        res.status(200).json({
+          success: true,
+          message:
+            "your account has been verified successfully , please Login to continue",
+        });
+      } else if (!isNotCodeVerify) {
+        return next(
+          new Errorhandler(
+            404,
+            "Expired verification code . please signup again to get a new code"
+          )
+        );
+      } else {
+        return next(
+          new Errorhandler(
+            404,
+            "Incorrect verification code . please signup again to get a new code"
+          )
+        );
+      }
+    } catch (error) {}
+  }
 }
 export default UserController;
