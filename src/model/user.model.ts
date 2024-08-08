@@ -1,6 +1,6 @@
 import mongoose, { Document, Schema } from "mongoose";
 
-interface IUser extends Document {
+export interface IUser extends Document {
   username: string;
   email: string;
   passwordHash: string;
@@ -16,7 +16,7 @@ interface IUser extends Document {
   lastLogin?: Date;
   createdAt: Date;
   updatedAt: Date;
-  
+
 }
 
 const userSchema: Schema<IUser> = new Schema({

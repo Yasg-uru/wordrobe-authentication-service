@@ -8,5 +8,7 @@ UserRouter.post(
   UserController.Register
 );
 UserRouter.post("/verify", UserController.verify);
+UserRouter.post("/login",UserController.Login);
+
 
 export default UserRouter;
