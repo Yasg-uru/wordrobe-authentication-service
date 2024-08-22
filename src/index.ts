@@ -3,8 +3,14 @@ import { config } from "dotenv";
 import connectDb from "./util/connectDb";
 import { ErrorhandlerMiddleware } from "./middleware/errorMiddleware";
 import UserRouter from "./route/user.route";
+import cors from "cors";
+
 const app: Application = express();
 config();
+app.use(cors({
+  origin:"http://localhost:5173",
+  credentials:true
+}))
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 

@@ -16,7 +16,8 @@ export interface IUser extends Document {
   lastLogin?: Date;
   createdAt: Date;
   updatedAt: Date;
-
+  ForgotPasswordResetToken: string | undefined;
+  ForgotPasswordResetTokenExpiry: Date | undefined;
 }
 
 const userSchema: Schema<IUser> = new Schema({
@@ -93,6 +94,12 @@ const userSchema: Schema<IUser> = new Schema({
   updatedAt: {
     type: Date,
     default: Date.now(),
+  },
+  ForgotPasswordResetToken: {
+    type: String,
+  },
+  ForgotPasswordResetTokenExpiry: {
+    type: Date,
   },
 });
 

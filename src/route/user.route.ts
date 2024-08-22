@@ -8,7 +8,11 @@ UserRouter.post(
   UserController.Register
 );
 UserRouter.post("/verify", UserController.verify);
-UserRouter.post("/login",UserController.Login);
+UserRouter.post("/login", UserController.Login);
+UserRouter.get("/alluser", UserController.getAlluser);
+UserRouter.post("/forgotpassword/:email", UserController.ForgotPassword);
+UserRouter.post("/reset/:token", UserController.ResetPassword);
 
+UserRouter.post("/logout", UserController.Logout);
 
 export default UserRouter;
