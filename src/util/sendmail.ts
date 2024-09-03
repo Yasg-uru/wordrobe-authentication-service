@@ -41,11 +41,18 @@ export const sendResetPasswordMail = async function (
   ResetLink: string,
   email: string
 ): Promise<ApiResponse> {
+  const resetUrl = `http://localhost:5173/Reset-password/${ResetLink}`;
+
   const MailOptions = {
     from: "yashpawar12122004@gmail.com",
     to: email,
     subject: "Password Reset",
-    text: `Please click on the following link to reset password:\n\n ${ResetLink}`,
+    html: `
+            <h3>Password Reset</h3>
+            <p>You have requested a password reset. Click the link below to reset your password:</p>
+            <a href="${resetUrl}">Reset Password</a>
+            <p>If you did not request this, please ignore this email.</p>
+        `,
   };
   try {
     const response = await Transporter.sendMail(MailOptions);

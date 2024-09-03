@@ -9,11 +9,11 @@ import {
   HashPassword,
   sendToken,
 } from "../util/auth.util";
-import  sendVerificationMail,{ sendResetPasswordMail } from "../util/sendmail";
+import sendVerificationMail, { sendResetPasswordMail } from "../util/sendmail";
 import UploadOnCloudinary from "../util/cloudinary.util";
 import { ReqWithUser } from "../types/ReqWithuser";
 // import sendVerificationMail from "src/util/sendmail";
-// import {sendResetPasswordMail } from "../util/sendmail" 
+// import {sendResetPasswordMail } from "../util/sendmail"
 
 class UserController {
   public static async Register(
@@ -176,11 +176,7 @@ class UserController {
     }
   }
 
-  public static async Logout(
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ) {
+  public static async Logout(req: Request, res: Response, next: NextFunction) {
     res.cookie("token", null, { expires: new Date() }).status(200).json({
       message: "Logged out Successfully",
     });

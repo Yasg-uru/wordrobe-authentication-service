@@ -1,5 +1,5 @@
-import { JwtPayload } from "jsonwebtoken";
 import { Request } from "express";
-export interface ReqWithUser extends Request{
-    user:JwtPayload
+import { JWT_Decoded } from "./jwtPayLoad";
+export interface ReqWithUser extends Request {
+  user: JWT_Decoded;
 }

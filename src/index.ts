@@ -7,15 +7,17 @@ import cors from "cors";
 
 const app: Application = express();
 config();
-app.use(cors({
-  origin:"http://localhost:5173",
-  credentials:true
-}))
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 const PORT = process.env.PORT || 4000;
-app.use("/user",UserRouter);
+app.use("/user", UserRouter);
 
 connectDb();
 app.use(ErrorhandlerMiddleware);
