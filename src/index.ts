@@ -9,7 +9,8 @@ const app: Application = express();
 config();
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    // origin: "http://localhost:5173",
+    origin: "https://virtual-wardrobe-frontend.vercel.app",
     credentials: true,
   })
 );
