@@ -24,28 +24,28 @@ export const GenerateToken = async (user: IUser) => {
     }
   );
 };
-export const sendToken =
-  async (res:Response,token: string,statuscode:number,user:IUser) =>  {
-    const options = {
-      expires: new Date(
-        Date.now() +
-          parseInt(process.env.COOKIE_EXPIRE as string, 10) *
-            24 *
-            60 *
-            60 *
-            1000
-      ),
-      httpOnly: true, // Ensures the cookie is accessible only via HTTP(S) and not JavaScript
-      sameSite: "none" as "none", // Ensures the cookie is sent in cross-origin requests
-        secure: true // Ensures the cookie is sent only over HTTPS in production
-    };
-    user.lastLogin=new Date();
-    await user.save();
-
-    res.cookie("token", token, options).status(statuscode).json({
-      success: true,
-      message: "Logged in successfully",
-      token,
-      user
-    });
+export const sendToken = async (
+  res: Response,
+  token: string,
+  statuscode: number,
+  user: IUser
+) => {
+  const options = {
+    expires: new Date(
+      Date.now() +
+        parseInt(process.env.COOKIE_EXPIRE as string, 10) * 24 * 60 * 60 * 1000
+    ),
+    httpOnly: true, // Ensures the cookie is accessible only via HTTP(S) and not JavaScript
+    sameSite: "none" as "none", // Ensures the cookie is sent in cross-origin requests
+    secure: true, // Ensures the cookie is sent only over HTTPS in production
   };
+  user.lastLogin = new Date();
+  await user.save();
+
+  res.cookie("token", token, options).status(statuscode).json({
+    success: true,
+    message: "Logged in successfully",
+    token,
+    user,
+  });
+};
