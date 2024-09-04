@@ -37,7 +37,7 @@ export const sendToken =
       ),
       httpOnly: true, // Ensures the cookie is accessible only via HTTP(S) and not JavaScript
       sameSite: "none" as "none", // Ensures the cookie is sent in cross-origin requests
-        secure: process.env.NODE_ENV === "production", // Ensures the cookie is sent only over HTTPS in production
+        secure: true // Ensures the cookie is sent only over HTTPS in production
     };
     user.lastLogin=new Date();
     await user.save();
