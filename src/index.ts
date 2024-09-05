@@ -10,7 +10,7 @@ config();
 app.use(
   cors({
     // origin: "http://localhost:5173",
-    origin: "https://virtual-wardrobe-frontend.vercel.app",
+    origin: ["https://virtual-wardrobe-frontend.vercel.app","http://localhost:5173"],
     credentials: true,
   })
 );
